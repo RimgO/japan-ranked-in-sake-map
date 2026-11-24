@@ -83,6 +83,16 @@ body{margin:0;padding:clamp(14px,4vw,40px) clamp(12px,3vw,28px);background:var(-
 .sk-table td.sk-wraptd{white-space:normal;min-width:180px}
 .sk-details summary{cursor:pointer;font-size:var(--cds-font-size-body)}
 .sk-details ul{margin:var(--cds-gap-sm) 0 0;padding-left:1.2em;font-size:var(--cds-font-size-caption);color:var(--color-fg-muted);line-height:1.7}
+.sk-sankey-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch}
+.sk-sankey{position:relative;min-height:640px;min-width:560px}
+.sk-sankey svg{display:block;overflow:visible}
+.sk-sankey text{font-family:var(--font-anthropic-sans);font-size:11px;fill:var(--color-fg);paint-order:stroke;stroke:var(--color-panel);stroke-width:3px;stroke-linejoin:round;pointer-events:none}
+.sk-sankey text.sk-colhead{font-size:12px;font-weight:600;fill:var(--cds-text-secondary)}
+.sk-sankey text.sk-brand{font-size:10.5px}
+.sk-flow{mix-blend-mode:multiply;cursor:pointer;transition:opacity .15s}
+@media (prefers-color-scheme:dark){.sk-flow{mix-blend-mode:screen}}
+.sk-node{fill:var(--cds-chart-axis)}
+.sk-sankey .sk-hit{fill:transparent;cursor:pointer}
 </style>
 </head>
 <body>
@@ -121,6 +131,19 @@ body{margin:0;padding:clamp(14px,4vw,40px) clamp(12px,3vw,28px);background:var(-
 <div class="sk-chart sk-strip" data-draw="strip" data-source="kura" id="strip">—</div>
 </section>
 
+<section class="sk-card" id="sankey-section">
+<h2 class="sk-h" id="sankey-h">米 → 仕込み水 → 銘柄 → 日本酒度 の流れ</h2>
+<p class="sk-p">1本の帯が1つの蔵です。左から、主な米、仕込み水、銘柄、日本酒度の順につないでいます。米や水、日本酒度の箱を押すと、そこを通る蔵だけが強調されます(もう一度押すと解除)。銘柄を押すと、ほかの図でもその蔵が選ばれ、下に詳細が出ます。</p>
+<div class="sk-row"><label for="sk-sankey-color">帯の色</label>
+<select class="dash-select" id="sk-sankey-color" aria-label="サンキー図の帯の色">
+<option value="rice">主な米</option>
+<option value="smv">日本酒度</option>
+</select></div>
+<div class="sk-sankey-wrap"><div class="sk-sankey" data-draw="sankey" data-source="kura" id="sankey">—</div></div>
+<p class="sk-note">仕込み水は、水質(軟水など)まで分かる蔵、水源だけ書かれている蔵、記載のない蔵に分けています。日本酒度は代表商品1本の値で、数値を公開していない蔵は「非公開」にまとめています。スマホでは図を横にスクロールできます。</p>
+<div class="sk-detail" data-draw="detail" data-source="kura" id="sankey-detail"></div>
+</section>
+
 <section class="sk-card" id="water-section">
 <h2 class="sk-h" id="water-h">仕込み水</h2>
 <p class="sk-p">仕込み水の記載があったのは <b data-draw="fig" data-source="summary" data-field="nWater" data-row="0">—</b> 蔵、うち水質まで分かるのは <b data-draw="fig" data-source="summary" data-field="nWaterClass" data-row="0">—</b> 蔵(軟水 <b data-draw="fig" data-source="summary" data-field="nSoft" data-row="0">—</b> 蔵)でした。数が少ないため、水質と甘辛の関係は傾向としては読めません。</p>
@@ -157,5 +180,6 @@ Created by RinK ・ <a href="https://github.com/RimgO/japan-ranked-in-sake-map">
 <script src="data/japan.js"></script>
 <script src="js/dash-shim.js"></script>
 <script src="js/app.js"></script>
+<script src="js/sankey.js"></script>
 </body>
 </html>

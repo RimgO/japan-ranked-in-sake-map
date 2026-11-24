@@ -39,7 +39,7 @@
       const w = document.documentElement.clientWidth;
       if (w === lastW) return;
       lastW = w;
-      ['map', 'scatter', 'strip'].forEach(run);
+      ['map', 'scatter', 'strip', 'sankey'].forEach(run);
     }, 150);
   });
   document.addEventListener('DOMContentLoaded', () => {

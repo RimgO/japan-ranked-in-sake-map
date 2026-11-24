@@ -32,8 +32,9 @@
   }
   function pick(brand) {
     SK.sel = SK.sel === brand ? null : brand;
-    ['map', 'scatter', 'strip', 'detail'].forEach((n) => dash.draw(n));
+    ['map', 'scatter', 'strip', 'detail', 'sankey'].forEach((n) => dash.draw(n));
   }
+  SK.pick = pick;
   function chip(parent, color, label, hollow) {
     const c = h('span', 'sk-chip');
     const sw = h('span', 'sk-sw' + (hollow ? ' sk-hol' : ''));
