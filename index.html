@@ -134,21 +134,28 @@ body{margin:0;padding:clamp(14px,4vw,40px) clamp(12px,3vw,28px);background:var(-
 <section class="sk-card" id="sankey-section">
 <h2 class="sk-h" id="sankey-h">米 → 仕込み水 → 銘柄 → 日本酒度 の流れ</h2>
 <p class="sk-p">1本の帯が1つの蔵です。左から、主な米、仕込み水、銘柄、日本酒度の順につないでいます。米や水、日本酒度の箱を押すと、そこを通る蔵だけが強調されます(もう一度押すと解除)。銘柄を押すと、ほかの図でもその蔵が選ばれ、下に詳細が出ます。</p>
-<div class="sk-row"><label for="sk-sankey-color">帯の色</label>
+<div class="sk-row"><label for="sk-sankey-water">仕込み水の分け方</label>
+<select class="dash-select" id="sk-sankey-water" aria-label="サンキー図の仕込み水の分け方">
+<option value="class">水質(軟水・中硬水など)</option>
+<option value="type">水源の種類(伏流水・湧水など)</option>
+<option value="name">水源名(川・山・湧水の名前)</option>
+</select>
+<label for="sk-sankey-color">帯の色</label>
 <select class="dash-select" id="sk-sankey-color" aria-label="サンキー図の帯の色">
 <option value="rice">主な米</option>
 <option value="smv">日本酒度</option>
 </select></div>
 <div class="sk-sankey-wrap"><div class="sk-sankey" data-draw="sankey" data-source="kura" id="sankey">—</div></div>
-<p class="sk-note">仕込み水は、水質(軟水など)まで分かる蔵、水源だけ書かれている蔵、記載のない蔵に分けています。日本酒度は代表商品1本の値で、数値を公開していない蔵は「非公開」にまとめています。スマホでは図を横にスクロールできます。</p>
+<p class="sk-note">仕込み水は、水質(軟水・中硬水・ミネラル分あり)、水源の種類、水源名の3通りで分けられます。水質の分け方では、水源しか分からない蔵を「水源のみ記載」にまとめています。日本酒度は代表商品1本の値で、数値を公開していない蔵は「非公開」にまとめています。スマホでは図を横にスクロールできます。</p>
 <div class="sk-detail" data-draw="detail" data-source="kura" id="sankey-detail"></div>
 </section>
 
 <section class="sk-card" id="water-section">
 <h2 class="sk-h" id="water-h">仕込み水</h2>
-<p class="sk-p">仕込み水の記載があったのは <b data-draw="fig" data-source="summary" data-field="nWater" data-row="0">—</b> 蔵、うち水質まで分かるのは <b data-draw="fig" data-source="summary" data-field="nWaterClass" data-row="0">—</b> 蔵(軟水 <b data-draw="fig" data-source="summary" data-field="nSoft" data-row="0">—</b> 蔵)でした。数が少ないため、水質と甘辛の関係は傾向としては読めません。</p>
+<p class="sk-p">仕込み水の記載があったのは <b data-draw="fig" data-source="summary" data-field="nWater" data-row="0">—</b> 蔵、うち水質まで分かるのは <b data-draw="fig" data-source="summary" data-field="nWaterClass" data-row="0">—</b> 蔵(軟水 <b data-draw="fig" data-source="summary" data-field="nSoft" data-row="0">—</b> 蔵)でした。水質が分かった蔵の多くは軟水ですが、軟水の蔵でも「甘口寄り」と「どちらとも」が半々で、水質だけで甘辛を読み分けるのは難しそうです。</p>
+<p class="sk-note">水質は、SAKETIMEの記載に加えて、蔵元の説明(みむろ杉・寫樂・よこやま)と販売店の商品情報(射美・大信州・総乃寒菊・廣戸川)で補いました。総乃寒菊は販売店によって軟水・中硬水と説明が分かれるため、「ミネラル分あり」としています。彩來の「弱硬水」は中硬水に含めました。金雀と七水は水源の名前しか分かっていません。</p>
 <div class="sk-wrap"><table class="sk-table" data-source="kura" data-row-key="brand" id="water-table">
-<thead><tr><th data-field="brand">銘柄</th><th data-field="pref">県</th><th data-field="water_class">水質</th><th data-field="water">水源</th><th data-field="smv" class="sk-num">日本酒度</th><th data-field="taste">味の傾向</th></tr></thead>
+<thead><tr><th data-field="brand">銘柄</th><th data-field="pref">県</th><th data-field="water_class">水質</th><th data-field="water_type">水源の種類</th><th data-field="water">水源</th><th data-field="water_src">水質の出典</th><th data-field="smv" class="sk-num">日本酒度</th><th data-field="taste">味の傾向</th></tr></thead>
 <tbody data-draw="wrows"></tbody></table></div>
 </section>
 
@@ -165,6 +172,7 @@ body{margin:0;padding:clamp(14px,4vw,40px) clamp(12px,3vw,28px);background:var(-
 <li>対象は、SAKETIME総合ランキング(2026年11月24日閲覧)の上位50銘柄を醸す蔵です。同じ蔵の銘柄はまとめ、順位と評価点は最上位の銘柄のものを使っています。</li>
 <li>日本酒度・酸度・米・仕込み水・味の傾向は、SAKETIMEの各銘柄ページ(銘柄一覧表・説明文・レビュー)の記載です。記載がない蔵は「非公開」「記載なし」としています。新政、産土、Ohmine など、数値を公開しない蔵が上位に多くあります。</li>
 <li>代表商品は、数値が載っていた商品の中から定番に近いものを選びました。辛口を名乗る限定品しか数値がない蔵(御湖鶴、よこやま)は、蔵全体の傾向より辛口側に出ます。</li>
+<li>仕込み水の水質は、SAKETIMEに記載のない蔵について、蔵元の説明や販売店の商品情報(2026年11月25日閲覧)で補っています。販売店の情報は、蔵元が公表した値でない場合があります。</li>
 <li>「味の傾向」は、説明文とレビューの甘辛評価から、甘口寄り・辛口寄り・どちらとも、の3つに分けたものです。</li>
 <li>緯度・経度は所在地の市町村から置いた概略値で、番地レベルの正確さはありません。</li>
 <li>ご指定の記事(Sakenomy「楽器正宗・自然郷 13本を飲み比べ」)は大木代吉本店1蔵の紹介で、日本酒度や酸度、仕込み水の記載はありませんでした。</li>

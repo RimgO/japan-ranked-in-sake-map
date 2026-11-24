@@ -4,7 +4,7 @@
   const col = (i) => (dash.colors && dash.colors[i]) || FALL[i % FALL.length];
   const SWEET = '#d1495b', DRY = '#2e7fb8', MID = '#a9a59c';
   const RICE = ['山田錦', '美山錦', 'ひとごこち', '雄町', '五百万石', '地元品種', '記載なし'];
-  const WATER = {'軟水': '#3aa0c9', 'ミネラル分あり': '#c98a2b', '弱硬水': '#a0522d'};
+  const WATER = {'軟水': '#3aa0c9', '中硬水': '#a0522d', 'ミネラル分あり': '#c98a2b'};
   const TASTE = {'甘口寄り': SWEET, 'どちらとも': MID, '辛口寄り': DRY};
   const smvScale = d3.scaleLinear().domain([-8, 0, 8]).range([SWEET, MID, DRY]).clamp(true);
   const num = (v) => (v == null || v === '' ? null : +v);
@@ -185,7 +185,7 @@
       chip(lg, null, '非公開・記載なし(' + data.filter((d) => d.smv == null).length + ')', true);
     } else {
       const key = mode === 'taste' ? 'taste' : mode === 'rice' ? 'rice' : 'water_class';
-      const order = mode === 'taste' ? Object.keys(TASTE) : mode === 'rice' ? RICE : ['軟水', 'ミネラル分あり', '弱硬水', '記載なし'];
+      const order = mode === 'taste' ? Object.keys(TASTE) : mode === 'rice' ? RICE : ['軟水', '中硬水', 'ミネラル分あり', '記載なし'];
       order.forEach((name, i) => {
         const n = data.filter((d) => d[key] === name).length;
         if (!n) return;
@@ -211,6 +211,7 @@
     add('味の傾向', d.taste);
     add('米', d.rice_note || d.rice);
     add('仕込み水', d.water + (d.water_class !== '記載なし' ? '(' + d.water_class + ')' : ''));
+    if (d.water_class !== '記載なし' && d.water_src && d.water_src !== '—') add('水質の出典', d.water_src);
     el.append(dl);
     const u = safeUrl(d.url);
     if (u) {
@@ -371,11 +372,13 @@
   dash.draw('wrows', (tb) => {
     const data = tableState(tb, 6);
     if (!data) return;
-    const ord = ['軟水', 'ミネラル分あり', '弱硬水', '記載なし'];
+    const ord = ['軟水', '中硬水', 'ミネラル分あり', '記載なし'];
     fillRows(tb, data.filter((d) => d.water && d.water !== '記載なし')
       .sort((a, b) => ord.indexOf(a.water_class) - ord.indexOf(b.water_class) || a.rank - b.rank), [
       {f: (d) => d.brand}, {f: (d) => d.pref}, {f: (d) => (d.water_class === '記載なし' ? '—' : d.water_class)},
-      {f: (d) => d.water, cls: 'sk-wraptd'}, {f: (d) => fmtSmv(d.smv), cls: 'sk-num'}, {f: (d) => d.taste}
+      {f: (d) => d.water_type || '—'}, {f: (d) => d.water, cls: 'sk-wraptd'},
+      {f: (d) => (d.water_class === '記載なし' ? '—' : d.water_src || '—')},
+      {f: (d) => fmtSmv(d.smv), cls: 'sk-num'}, {f: (d) => d.taste}
     ]);
   });
 

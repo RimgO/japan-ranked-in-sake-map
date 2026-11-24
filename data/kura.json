@@ -17,7 +17,10 @@
   "water": "記載なし",
   "water_class": "記載なし",
   "taste": "甘口寄り",
-  "url": "https://www.saketime.jp/brands/241/"
+  "url": "https://www.saketime.jp/brands/241/",
+  "water_type": "記載なし",
+  "water_name": "記載なし",
+  "water_src": "—"
  },
  {
   "rank": 2,
@@ -37,7 +40,10 @@
   "water": "記載なし",
   "water_class": "記載なし",
   "taste": "甘口寄り",
-  "url": "https://www.saketime.jp/brands/113/"
+  "url": "https://www.saketime.jp/brands/113/",
+  "water_type": "記載なし",
+  "water_name": "記載なし",
+  "water_src": "—"
  },
  {
   "rank": 3,
@@ -57,7 +63,10 @@
   "water": "記載なし",
   "water_class": "記載なし",
   "taste": "甘口寄り",
-  "url": "https://www.saketime.jp/brands/4854/"
+  "url": "https://www.saketime.jp/brands/4854/",
+  "water_type": "記載なし",
+  "water_name": "記載なし",
+  "water_src": "—"
  },
  {
   "rank": 4,
@@ -74,10 +83,13 @@
   "acid": null,
   "rice": "記載なし",
   "rice_note": "記載なし",
-  "water": "銘水百選に選ばれた水",
+  "water": "錦川源流域の湧き水(名水百選の寂地川を含む錦川水系)",
   "water_class": "記載なし",
   "taste": "どちらとも",
-  "url": "https://www.saketime.jp/brands/1828/"
+  "url": "https://www.saketime.jp/brands/1828/",
+  "water_type": "湧水",
+  "water_name": "錦川",
+  "water_src": "—"
  },
  {
   "rank": 5,
@@ -97,7 +109,10 @@
   "water": "記載なし",
   "water_class": "記載なし",
   "taste": "どちらとも",
-  "url": "https://www.saketime.jp/brands/2078/"
+  "url": "https://www.saketime.jp/brands/2078/",
+  "water_type": "記載なし",
+  "water_name": "記載なし",
+  "water_src": "—"
  },
  {
   "rank": 5,
@@ -115,9 +130,12 @@
   "rice": "地元品種",
   "rice_note": "市内産酒米中心(総の舞)、五百万石など",
   "water": "敷地内の柿の木の根元から湧く清水",
-  "water_class": "記載なし",
+  "water_class": "ミネラル分あり",
   "taste": "甘口寄り",
-  "url": "https://www.saketime.jp/brands/575/"
+  "url": "https://www.saketime.jp/brands/575/",
+  "water_type": "湧水",
+  "water_name": "蔵の湧水(九十九里)",
+  "water_src": "販売店"
  },
  {
   "rank": 8,
@@ -137,7 +155,10 @@
   "water": "記載なし",
   "water_class": "記載なし",
   "taste": "甘口寄り",
-  "url": "https://www.saketime.jp/brands/175/"
+  "url": "https://www.saketime.jp/brands/175/",
+  "water_type": "記載なし",
+  "water_name": "記載なし",
+  "water_src": "—"
  },
  {
   "rank": 8,
@@ -157,7 +178,10 @@
   "water": "記載なし",
   "water_class": "記載なし",
   "taste": "どちらとも",
-  "url": "https://www.saketime.jp/brands/6243/"
+  "url": "https://www.saketime.jp/brands/6243/",
+  "water_type": "記載なし",
+  "water_name": "記載なし",
+  "water_src": "—"
  },
  {
   "rank": 10,
@@ -177,7 +201,10 @@
   "water": "荒川・利根川水系の伏流水(井戸水)",
   "water_class": "軟水",
   "taste": "甘口寄り",
-  "url": "https://www.saketime.jp/brands/553/"
+  "url": "https://www.saketime.jp/brands/553/",
+  "water_type": "河川の伏流水",
+  "water_name": "荒川・利根川",
+  "water_src": "SAKETIME"
  },
  {
   "rank": 12,
@@ -197,7 +224,10 @@
   "water": "千曲川の伏流水",
   "water_class": "ミネラル分あり",
   "taste": "どちらとも",
-  "url": "https://www.saketime.jp/brands/850/"
+  "url": "https://www.saketime.jp/brands/850/",
+  "water_type": "河川の伏流水",
+  "water_name": "千曲川",
+  "water_src": "SAKETIME"
  },
  {
   "rank": 13,
@@ -217,7 +247,10 @@
   "water": "記載なし",
   "water_class": "記載なし",
   "taste": "甘口寄り",
-  "url": "https://www.saketime.jp/brands/3606/"
+  "url": "https://www.saketime.jp/brands/3606/",
+  "water_type": "記載なし",
+  "water_name": "記載なし",
+  "water_src": "—"
  },
  {
   "rank": 14,
@@ -237,7 +270,10 @@
   "water": "記載なし",
   "water_class": "記載なし",
   "taste": "どちらとも",
-  "url": "https://www.saketime.jp/brands/3402/"
+  "url": "https://www.saketime.jp/brands/3402/",
+  "water_type": "記載なし",
+  "water_name": "記載なし",
+  "water_src": "—"
  },
  {
   "rank": 17,
@@ -255,9 +291,12 @@
   "rice": "地元品種",
   "rice_note": "露葉風(奈良の酒米)を重視、山田錦",
   "water": "三輪山の伏流水",
-  "water_class": "記載なし",
+  "water_class": "軟水",
   "taste": "どちらとも",
-  "url": "https://www.saketime.jp/brands/1496/"
+  "url": "https://www.saketime.jp/brands/1496/",
+  "water_type": "山の伏流水・雪解け水",
+  "water_name": "三輪山",
+  "water_src": "蔵元"
  },
  {
   "rank": 17,
@@ -277,7 +316,10 @@
   "water": "記載なし",
   "water_class": "記載なし",
   "taste": "甘口寄り",
-  "url": "https://www.saketime.jp/brands/3480/"
+  "url": "https://www.saketime.jp/brands/3480/",
+  "water_type": "記載なし",
+  "water_name": "記載なし",
+  "water_src": "—"
  },
  {
   "rank": 19,
@@ -294,10 +336,13 @@
   "acid": 1.5,
   "rice": "雄町",
   "rice_note": "山田錦・五百万石・雄町・愛山・酒未来・夢の香",
-  "water": "會津宮水",
-  "water_class": "記載なし",
+  "water": "磐梯山の伏流水(會津宮水)",
+  "water_class": "軟水",
   "taste": "どちらとも",
-  "url": "https://www.saketime.jp/brands/372/"
+  "url": "https://www.saketime.jp/brands/372/",
+  "water_type": "山の伏流水・雪解け水",
+  "water_name": "磐梯山",
+  "water_src": "蔵元"
  },
  {
   "rank": 19,
@@ -317,7 +362,10 @@
   "water": "記載なし",
   "water_class": "記載なし",
   "taste": "甘口寄り",
-  "url": "https://www.saketime.jp/brands/1821/"
+  "url": "https://www.saketime.jp/brands/1821/",
+  "water_type": "記載なし",
+  "water_name": "記載なし",
+  "water_src": "—"
  },
  {
   "rank": 19,
@@ -337,7 +385,10 @@
   "water": "軟水の仕込み水(水源の記載なし)",
   "water_class": "軟水",
   "taste": "どちらとも",
-  "url": "https://www.saketime.jp/brands/7386/"
+  "url": "https://www.saketime.jp/brands/7386/",
+  "water_type": "記載なし",
+  "water_name": "記載なし",
+  "water_src": "SAKETIME"
  },
  {
   "rank": 22,
@@ -354,10 +405,13 @@
   "acid": null,
   "rice": "地元品種",
   "rice_note": "夢の香が中心、一部山田錦・雄町",
-  "water": "釈迦堂川の水系",
-  "water_class": "記載なし",
+  "water": "敷地内の井戸水(釈迦堂川流域)",
+  "water_class": "中硬水",
   "taste": "どちらとも",
-  "url": "https://www.saketime.jp/brands/2299/"
+  "url": "https://www.saketime.jp/brands/2299/",
+  "water_type": "井戸水",
+  "water_name": "釈迦堂川",
+  "water_src": "販売店"
  },
  {
   "rank": 22,
@@ -377,7 +431,10 @@
   "water": "記載なし",
   "water_class": "記載なし",
   "taste": "甘口寄り",
-  "url": "https://www.saketime.jp/brands/913/"
+  "url": "https://www.saketime.jp/brands/913/",
+  "water_type": "記載なし",
+  "water_name": "記載なし",
+  "water_src": "—"
  },
  {
   "rank": 25,
@@ -397,7 +454,10 @@
   "water": "記載なし",
   "water_class": "記載なし",
   "taste": "甘口寄り",
-  "url": "https://www.saketime.jp/brands/4250/"
+  "url": "https://www.saketime.jp/brands/4250/",
+  "water_type": "記載なし",
+  "water_name": "記載なし",
+  "water_src": "—"
  },
  {
   "rank": 25,
@@ -414,10 +474,13 @@
   "acid": null,
   "rice": "山田錦",
   "rice_note": "山田錦、吟のさと",
-  "water": "良質な地下水",
-  "water_class": "記載なし",
+  "water": "蔵の下から湧く水(水源の上に蔵を建設)",
+  "water_class": "ミネラル分あり",
   "taste": "甘口寄り",
-  "url": "https://www.saketime.jp/brands/5487/"
+  "url": "https://www.saketime.jp/brands/5487/",
+  "water_type": "湧水",
+  "water_name": "壱岐の湧水",
+  "water_src": "蔵元"
  },
  {
   "rank": 27,
@@ -437,7 +500,10 @@
   "water": "湧水「万年の泉」(仁淀川水系)",
   "water_class": "軟水",
   "taste": "甘口寄り",
-  "url": "https://www.saketime.jp/brands/1927/"
+  "url": "https://www.saketime.jp/brands/1927/",
+  "water_type": "湧水",
+  "water_name": "万年の泉(仁淀川)",
+  "water_src": "SAKETIME"
  },
  {
   "rank": 27,
@@ -457,7 +523,10 @@
   "water": "宇都宮七水のひとつ「虹の井」",
   "water_class": "記載なし",
   "taste": "どちらとも",
-  "url": "https://www.saketime.jp/brands/421/"
+  "url": "https://www.saketime.jp/brands/421/",
+  "water_type": "井戸水",
+  "water_name": "虹の井",
+  "water_src": "—"
  },
  {
   "rank": 29,
@@ -477,7 +546,10 @@
   "water": "軟水仕込み(水源の記載なし)",
   "water_class": "軟水",
   "taste": "甘口寄り",
-  "url": "https://www.saketime.jp/brands/4890/"
+  "url": "https://www.saketime.jp/brands/4890/",
+  "water_type": "記載なし",
+  "water_name": "記載なし",
+  "water_src": "SAKETIME"
  },
  {
   "rank": 29,
@@ -497,7 +569,10 @@
   "water": "記載なし",
   "water_class": "記載なし",
   "taste": "どちらとも",
-  "url": "https://www.saketime.jp/brands/2450/"
+  "url": "https://www.saketime.jp/brands/2450/",
+  "water_type": "記載なし",
+  "water_name": "記載なし",
+  "water_src": "—"
  },
  {
   "rank": 29,
@@ -514,10 +589,13 @@
   "acid": 1.6,
   "rice": "地元品種",
   "rice_note": "揖斐の誉(蔵と地元で開発した酒米)",
-  "water": "揖斐川の伏流水",
-  "water_class": "記載なし",
+  "water": "揖斐川の伏流水(炭素ろ過)",
+  "water_class": "軟水",
   "taste": "甘口寄り",
-  "url": "https://www.saketime.jp/brands/1189/"
+  "url": "https://www.saketime.jp/brands/1189/",
+  "water_type": "河川の伏流水",
+  "water_name": "揖斐川",
+  "water_src": "販売店"
  },
  {
   "rank": 33,
@@ -534,10 +612,13 @@
   "acid": null,
   "rice": "山田錦",
   "rice_note": "山田錦・雄町・愛山",
-  "water": "別府弁天池の湧き水(カルシウム・ミネラルを含む)",
+  "water": "別府弁天池の湧き水",
   "water_class": "ミネラル分あり",
   "taste": "甘口寄り",
-  "url": "https://www.saketime.jp/brands/1848/"
+  "url": "https://www.saketime.jp/brands/1848/",
+  "water_type": "湧水",
+  "water_name": "別府弁天池",
+  "water_src": "SAKETIME"
  },
  {
   "rank": 35,
@@ -557,7 +638,10 @@
   "water": "記載なし",
   "water_class": "記載なし",
   "taste": "どちらとも",
-  "url": "https://www.saketime.jp/brands/26/"
+  "url": "https://www.saketime.jp/brands/26/",
+  "water_type": "記載なし",
+  "water_name": "記載なし",
+  "water_src": "—"
  },
  {
   "rank": 35,
@@ -577,7 +661,10 @@
   "water": "記載なし",
   "water_class": "記載なし",
   "taste": "どちらとも",
-  "url": "https://www.saketime.jp/brands/323/"
+  "url": "https://www.saketime.jp/brands/323/",
+  "water_type": "記載なし",
+  "water_name": "記載なし",
+  "water_src": "—"
  },
  {
   "rank": 37,
@@ -597,7 +684,10 @@
   "water": "記載なし",
   "water_class": "記載なし",
   "taste": "甘口寄り",
-  "url": "https://www.saketime.jp/brands/266/"
+  "url": "https://www.saketime.jp/brands/266/",
+  "water_type": "記載なし",
+  "water_name": "記載なし",
+  "water_src": "—"
  },
  {
   "rank": 37,
@@ -617,7 +707,10 @@
   "water": "利根川の伏流水",
   "water_class": "軟水",
   "taste": "甘口寄り",
-  "url": "https://www.saketime.jp/brands/473/"
+  "url": "https://www.saketime.jp/brands/473/",
+  "water_type": "河川の伏流水",
+  "water_name": "利根川",
+  "water_src": "SAKETIME"
  },
  {
   "rank": 37,
@@ -637,7 +730,10 @@
   "water": "記載なし",
   "water_class": "記載なし",
   "taste": "どちらとも",
-  "url": "https://www.saketime.jp/brands/3283/"
+  "url": "https://www.saketime.jp/brands/3283/",
+  "water_type": "記載なし",
+  "water_name": "記載なし",
+  "water_src": "—"
  },
  {
   "rank": 37,
@@ -657,7 +753,10 @@
   "water": "記載なし",
   "water_class": "記載なし",
   "taste": "辛口寄り",
-  "url": "https://www.saketime.jp/brands/967/"
+  "url": "https://www.saketime.jp/brands/967/",
+  "water_type": "記載なし",
+  "water_name": "記載なし",
+  "water_src": "—"
  },
  {
   "rank": 37,
@@ -677,7 +776,10 @@
   "water": "記載なし",
   "water_class": "記載なし",
   "taste": "どちらとも",
-  "url": "https://www.saketime.jp/brands/5496/"
+  "url": "https://www.saketime.jp/brands/5496/",
+  "water_type": "記載なし",
+  "water_name": "記載なし",
+  "water_src": "—"
  },
  {
   "rank": 42,
@@ -697,7 +799,10 @@
   "water": "記載なし",
   "water_class": "記載なし",
   "taste": "甘口寄り",
-  "url": "https://www.saketime.jp/brands/2281/"
+  "url": "https://www.saketime.jp/brands/2281/",
+  "water_type": "記載なし",
+  "water_name": "記載なし",
+  "water_src": "—"
  },
  {
   "rank": 42,
@@ -717,7 +822,10 @@
   "water": "記載なし",
   "water_class": "記載なし",
   "taste": "甘口寄り",
-  "url": "https://www.saketime.jp/brands/5873/"
+  "url": "https://www.saketime.jp/brands/5873/",
+  "water_type": "記載なし",
+  "water_name": "記載なし",
+  "water_src": "—"
  },
  {
   "rank": 42,
@@ -734,10 +842,13 @@
   "acid": 1.6,
   "rice": "ひとごこち",
   "rice_note": "長野県産ひとごこち・金紋錦",
-  "water": "北アルプスの天然水",
-  "water_class": "記載なし",
+  "water": "北アルプス連峰の伏流水(雪解け水)",
+  "water_class": "軟水",
   "taste": "どちらとも",
-  "url": "https://www.saketime.jp/brands/839/"
+  "url": "https://www.saketime.jp/brands/839/",
+  "water_type": "山の伏流水・雪解け水",
+  "water_name": "北アルプス",
+  "water_src": "販売店"
  },
  {
   "rank": 42,
@@ -755,9 +866,12 @@
   "rice": "雄町",
   "rice_note": "雄町",
   "water": "秩父盆地を経た伏流水",
-  "water_class": "弱硬水",
+  "water_class": "中硬水",
   "taste": "甘口寄り",
-  "url": "https://www.saketime.jp/brands/5567/"
+  "url": "https://www.saketime.jp/brands/5567/",
+  "water_type": "河川の伏流水",
+  "water_name": "荒川(秩父)",
+  "water_src": "SAKETIME"
  },
  {
   "rank": 46,
@@ -777,7 +891,10 @@
   "water": "記載なし",
   "water_class": "記載なし",
   "taste": "どちらとも",
-  "url": "https://www.saketime.jp/brands/2025/"
+  "url": "https://www.saketime.jp/brands/2025/",
+  "water_type": "記載なし",
+  "water_name": "記載なし",
+  "water_src": "—"
  },
  {
   "rank": 46,
@@ -797,7 +914,10 @@
   "water": "記載なし",
   "water_class": "記載なし",
   "taste": "甘口寄り",
-  "url": "https://www.saketime.jp/brands/3256/"
+  "url": "https://www.saketime.jp/brands/3256/",
+  "water_type": "記載なし",
+  "water_name": "記載なし",
+  "water_src": "—"
  },
  {
   "rank": 46,
@@ -817,7 +937,10 @@
   "water": "記載なし",
   "water_class": "記載なし",
   "taste": "甘口寄り",
-  "url": "https://www.saketime.jp/brands/1837/"
+  "url": "https://www.saketime.jp/brands/1837/",
+  "water_type": "記載なし",
+  "water_name": "記載なし",
+  "water_src": "—"
  },
  {
   "rank": 49,
@@ -837,7 +960,10 @@
   "water": "巻機山の雪解け水(超軟水)",
   "water_class": "軟水",
   "taste": "どちらとも",
-  "url": "https://www.saketime.jp/brands/793/"
+  "url": "https://www.saketime.jp/brands/793/",
+  "water_type": "山の伏流水・雪解け水",
+  "water_name": "巻機山",
+  "water_src": "SAKETIME"
  },
  {
   "rank": 49,
@@ -857,6 +983,9 @@
   "water": "記載なし",
   "water_class": "記載なし",
   "taste": "甘口寄り",
-  "url": "https://www.saketime.jp/brands/228/"
+  "url": "https://www.saketime.jp/brands/228/",
+  "water_type": "記載なし",
+  "water_name": "記載なし",
+  "water_src": "—"
  }
 ]

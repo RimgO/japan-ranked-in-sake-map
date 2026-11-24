@@ -2,10 +2,12 @@
 (function () {
   const RICE = ['山田錦', '美山錦', 'ひとごこち', '雄町', '五百万石', '地元品種', '記載なし'];
   const RICE_C = ['#3b78c2', '#d98a2b', '#4a9d6f', '#b0589a', '#8a7a3d', '#c2553b', '#a9a59c'];
-  const WATER = ['軟水', 'ミネラル分あり', '弱硬水', '水源のみ記載', '記載なし'];
+  const WATER_CLASS = ['軟水', '中硬水', 'ミネラル分あり', '水源のみ記載', '記載なし'];
+  const WATER_TYPE = ['河川の伏流水', '山の伏流水・雪解け水', '湧水', '井戸水', '記載なし'];
+  const WATER_HEAD = {class: '仕込み水(水質)', type: '仕込み水(水源の種類)', name: '仕込み水(水源名)'};
   const SMV = ['甘口(−4以下)', 'やや甘口(−3.9〜−0.1)', '中口(0〜+3)', '辛口(+4以上)', '非公開'];
   const SMV_C = ['#d1495b', '#e08a8f', '#a9a59c', '#2e7fb8', '#cfcac0'];
-  const state = {color: 'rice', hover: null};
+  const state = {color: 'rice', water: 'class', hover: null};
 
   const num = (v) => (v == null || v === '' ? null : +v);
   const waterOf = (d) => (d.water_class && d.water_class !== '記載なし' ? d.water_class
@@ -19,11 +21,25 @@
     return k.data.map((d) => {
       const smv = num(d.smv);
       return {brand: d.brand, kura: d.kura, pref: d.pref, rank: num(d.rank), rice: RICE.includes(d.rice) ? d.rice : '記載なし',
-        water: waterOf(d), waterName: d.water, smv, band: smvOf(smv)};
+        water: state.water === 'type' ? (d.water_type || '記載なし') : state.water === 'name' ? (d.water_name || '記載なし') : waterOf(d),
+        waterName: d.water, waterClass: waterOf(d), waterSrc: d.water_src, smv, band: smvOf(smv)};
     });
   }
 
+  function waterOrder(data) {
+    if (state.water === 'class') return WATER_CLASS;
+    if (state.water === 'type') return WATER_TYPE;
+    // 水源名: grouped by source type, then name; unknown last
+    const raw = dash.data('kura').data;
+    const typeOf = {};
+    raw.forEach((d) => { typeOf[d.water_name] = d.water_type; });
+    const names = [...new Set(data.map((d) => d.water))].filter((n) => n !== '記載なし');
+    names.sort((a, b) => WATER_TYPE.indexOf(typeOf[a]) - WATER_TYPE.indexOf(typeOf[b]) || a.localeCompare(b, 'ja'));
+    return names.concat(['記載なし']);
+  }
+
   function layout(data, W) {
+    const WATER = waterOrder(data);
     const cols = [
       {key: 'rice', order: RICE},
       {key: 'water', order: WATER},
@@ -39,10 +55,11 @@
     }).map((d) => d.brand);
     cols[2].order = brands;
 
-    const unit = 14, gap = 10, top = 30;
+    const unit = 14, gap = state.water === 'name' ? 6 : 10, top = 30;
     const labelL = W < 560 ? 92 : 110, labelR = W < 560 ? 112 : 136, nodeW = 10;
+    const waterL = state.water === 'name' ? 126 : 0;
     const usable = Math.max(420, W) - labelL - labelR - nodeW;
-    const xs = [labelL, labelL + usable * 0.30, labelL + usable * 0.62, labelL + usable];
+    const xs = [labelL, labelL + Math.max(usable * 0.30, waterL), labelL + usable * 0.62, labelL + usable];
     const present = cols.map((c) => c.order.filter((name) => data.some((d) => d[c.key] === name)));
     const totals = present.map((p, ci) => data.length * unit + (p.length - 1) * (ci === 2 ? 0 : gap));
     const maxH = Math.max(...totals);
@@ -88,7 +105,7 @@
     const svg = d3.select(el).append('svg').attr('viewBox', '0 0 ' + L.W + ' ' + L.H)
       .attr('width', L.W).attr('height', L.H).attr('role', 'img')
       .attr('aria-label', data.length + ' 蔵を、主な米・仕込み水・銘柄・日本酒度の順に流れでつないだサンキー図');
-    ['主な米', '仕込み水', '銘柄', '日本酒度'].forEach((t, i) => {
+    ['主な米', WATER_HEAD[state.water], '銘柄', '日本酒度'].forEach((t, i) => {
       svg.append('text').attr('class', 'sk-colhead').attr('x', L.xs[i] + L.nodeW / 2).attr('y', 14)
         .attr('text-anchor', 'middle').text(t);
     });
@@ -111,7 +128,8 @@
       .attr('class', 'sk-flow').attr('d', (l) => bandPath(l, L.unit - 1))
       .style('fill', (l) => color(l.d)).style('opacity', (l) => (on(l.d) ? (focus ? 0.85 : 0.5) : 0.08))
       .on('pointermove', (ev, l) => showTip(ev, l.d.brand, [l.d.kura + '・' + l.d.pref, '米: ' + l.d.rice,
-        '仕込み水: ' + (l.d.water === '記載なし' ? '記載なし' : l.d.waterName), '日本酒度: ' + fmtSmv(l.d.smv)]))
+        '仕込み水: ' + l.d.waterName + (l.d.waterClass !== '水源のみ記載' && l.d.waterClass !== '記載なし' ? '(' + l.d.waterClass + ')' : ''),
+        '日本酒度: ' + fmtSmv(l.d.smv)]))
       .on('pointerleave', hideTip)
       .on('click', (ev, l) => window.SK && window.SK.pick && window.SK.pick(l.d.brand));
 
@@ -132,8 +150,8 @@
       if (n.ci === 2 && sel === n.name) t.style('font-weight', 700);
       // hit area for the whole node + label
       g.append('rect').attr('class', 'sk-hit')
-        .attr('x', right ? n.x : n.x - (n.ci === 0 ? 92 : 110)).attr('y', n.y)
-        .attr('width', L.nodeW + (n.ci === 2 ? 120 : n.ci === 3 ? 130 : n.ci === 0 ? 92 : 110)).attr('height', Math.max(8, n.h))
+        .attr('x', right ? n.x : n.x - (n.ci === 0 ? 92 : 120)).attr('y', n.y)
+        .attr('width', L.nodeW + (n.ci === 2 ? 120 : n.ci === 3 ? 130 : n.ci === 0 ? 92 : 120)).attr('height', Math.max(8, n.h))
         .on('pointerenter', () => { if (n.ci !== 2) setHover({key, name: n.name}); })
         .on('pointermove', (ev) => {
           if (n.ci === 2) {
@@ -165,5 +183,8 @@
 
   document.querySelectorAll('#sk-sankey-color').forEach((s) => {
     s.addEventListener('change', () => { state.color = s.value; dash.draw('sankey'); });
+  });
+  document.querySelectorAll('#sk-sankey-water').forEach((s) => {
+    s.addEventListener('change', () => { state.water = s.value; state.hover = null; dash.draw('sankey'); });
   });
 })();
