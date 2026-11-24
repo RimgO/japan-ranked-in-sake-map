@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>評価の高い日本酒の蔵 — 産地・甘辛・米・水</title>
+<meta name="description" content="SAKETIME上位50銘柄を醸す43蔵を地図に置き、日本酒度・酸度、米、仕込み水との関係を見られるインタラクティブな可視化。">
+<meta property="og:type" content="website">
+<meta property="og:title" content="評価の高い日本酒の蔵 — 産地・甘辛・米・水">
+<meta property="og:description" content="SAKETIME上位50銘柄を醸す43蔵を地図に置き、日本酒度・酸度、米、仕込み水との関係を見られるインタラクティブな可視化。">
+<meta property="og:url" content="https://rimgo.github.io/japan-ranked-in-sake-map/">
+<meta property="og:image" content="https://rimgo.github.io/japan-ranked-in-sake-map/img/ogp.png">
+<meta name="twitter:card" content="summary_large_image">
+<style>
+:root{
+  --color-fg:#22201c;--color-fg-muted:#6b665d;--color-bg:#f4f2ec;--color-panel:#fffdf9;--color-border-line:#e3dfd5;
+  --font-anthropic-sans:"Hiragino Sans","Hiragino Kaku Gothic ProN","Noto Sans JP","Yu Gothic UI",Meiryo,system-ui,sans-serif;
+  --font-anthropic-serif:"Hiragino Mincho ProN","Noto Serif JP","Yu Mincho",serif;
+  --cds-font-size-caption:12.5px;--cds-font-size-body:15px;--cds-font-size-heading:18px;--cds-font-size-title:clamp(24px,4.4vw,34px);
+  --cds-font-weight-medium:600;
+  --cds-gap-xs:4px;--cds-gap-sm:8px;--cds-gap-md:16px;--cds-gap-lg:24px;--cds-gap-xl:28px;
+  --cds-pad-lg:clamp(14px,3vw,24px);--cds-radius:10px;
+  --cds-chart-grid:#ebe7de;--cds-chart-axis:#bdb8ad;--cds-chart-reference:#b3ada2;
+  --cds-text-secondary:#6b665d;--cds-surface-popover:#fffdf9;--cds-border:#dcd7cc;--cds-shadow-popover:0 4px 14px rgba(0,0,0,.12);
+}
+@media (prefers-color-scheme:dark){:root{
+  --color-fg:#ece9e2;--color-fg-muted:#a8a398;--color-bg:#1b1a18;--color-panel:#252320;--color-border-line:#3a3732;
+  --cds-chart-grid:#34312c;--cds-chart-axis:#5c5850;--cds-chart-reference:#6d685f;
+  --cds-text-secondary:#a8a398;--cds-surface-popover:#2c2a26;--cds-border:#45413b;--cds-shadow-popover:0 4px 14px rgba(0,0,0,.45);
+}}
+html{background:var(--color-bg)}
+body{margin:0;padding:clamp(14px,4vw,40px) clamp(12px,3vw,28px);background:var(--color-bg);color:var(--color-fg);font-family:var(--font-anthropic-sans);-webkit-text-size-adjust:100%}
+.dash-select{font:inherit;font-size:14px;color:var(--color-fg);background-color:var(--color-panel);border:1px solid var(--color-border-line);border-radius:8px;padding:6px 28px 6px 10px;appearance:none;-webkit-appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6'%3E%3Cpath d='M0 0l5 6 5-6z' fill='%23888'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 10px center}
+[hidden]{display:none!important}
+.sk-foot{font-size:var(--cds-font-size-caption);color:var(--color-fg-muted);text-align:center;margin-top:8px;line-height:1.8}
+.sk-foot a{color:inherit}
+
+.sk{font-family:var(--font-anthropic-sans);color:var(--color-fg);max-width:980px;margin:0 auto;display:flex;flex-direction:column;gap:var(--cds-gap-xl)}
+.sk-title{font-family:var(--font-anthropic-serif);font-weight:400;font-size:var(--cds-font-size-title);margin:0;line-height:1.25}
+.sk-lead{margin:var(--cds-gap-sm) 0 0;font-size:var(--cds-font-size-body);line-height:1.7}
+.sk-lead b,.sk-p b{font-variant-numeric:tabular-nums}
+.sk-h{font-size:var(--cds-font-size-heading);font-weight:var(--cds-font-weight-medium);margin:0 0 var(--cds-gap-xs)}
+.sk-p{margin:0 0 var(--cds-gap-sm);color:var(--color-fg-muted);font-size:var(--cds-font-size-body);line-height:1.6}
+.sk-card{background:var(--color-panel);border:1px solid var(--color-border-line);border-radius:var(--cds-radius);padding:var(--cds-pad-lg)}
+.sk-row{display:flex;flex-wrap:wrap;gap:var(--cds-gap-sm);align-items:center;margin-bottom:var(--cds-gap-sm)}
+.sk-row label{font-size:var(--cds-font-size-caption);color:var(--color-fg-muted)}
+.sk-chart{position:relative;min-height:300px}
+.sk-map{max-width:640px;margin:0 auto;min-height:380px}
+.sk-strip{min-height:260px}
+.sk-chart svg{display:block;overflow:visible}
+.sk-land{fill:var(--color-bg);stroke:var(--cds-chart-axis);stroke-width:.7}
+.sk-chart text{font-family:var(--font-anthropic-sans);font-size:11px;fill:var(--cds-text-secondary)}
+.sk-chart text.sk-lab{fill:var(--color-fg);paint-order:stroke;stroke:var(--color-panel);stroke-width:3px;stroke-linejoin:round}
+.sk-chart text.sk-corner{font-size:10.5px;opacity:.85}
+.sk-grid{stroke:var(--cds-chart-grid)}
+.sk-ref{stroke:var(--cds-chart-reference);stroke-dasharray:3 3}
+.sk-dot{stroke:var(--color-panel);stroke-width:1.2;cursor:pointer}
+.sk-dot.sk-hollow{fill:var(--color-panel);stroke:var(--cds-text-secondary);stroke-width:1.3}
+.sk-dot.sk-on{stroke:var(--color-fg);stroke-width:2.4}
+.sk-ring{fill:none;stroke:var(--color-fg);stroke-width:1.2;stroke-dasharray:2 2;pointer-events:none}
+.sk-hit{fill:transparent;cursor:pointer}
+.sk-tip{position:absolute;pointer-events:none;background:var(--cds-surface-popover);border:1px solid var(--cds-border);box-shadow:var(--cds-shadow-popover);border-radius:var(--cds-radius);padding:6px 9px;font-size:var(--cds-font-size-caption);line-height:1.45;max-width:210px;z-index:2}
+.sk-tip strong{display:block;font-weight:var(--cds-font-weight-medium)}
+.sk-tip span{color:var(--cds-text-secondary);display:block}
+.sk-legend{display:flex;flex-wrap:wrap;gap:6px 14px;margin-top:var(--cds-gap-sm);font-size:var(--cds-font-size-caption);color:var(--color-fg-muted);align-items:center}
+.sk-chip{display:inline-flex;align-items:center;gap:5px}
+.sk-sw{width:10px;height:10px;border-radius:50%;display:inline-block;flex:none}
+.sk-sw.sk-hol{background:transparent;border:1.3px solid var(--cds-text-secondary)}
+.sk-bar{width:110px;height:8px;border-radius:4px;display:inline-block}
+.sk-note{font-size:var(--cds-font-size-caption);color:var(--color-fg-muted);margin:var(--cds-gap-sm) 0 0;line-height:1.6}
+.sk-detail{margin-top:var(--cds-gap-md);border-top:1px solid var(--color-border-line);padding-top:var(--cds-gap-md);min-height:1.5em}
+.sk-detail h3{margin:0 0 2px;font-size:var(--cds-font-size-heading);font-weight:var(--cds-font-weight-medium)}
+.sk-detail .sk-sub{color:var(--color-fg-muted);font-size:var(--cds-font-size-caption);margin-bottom:var(--cds-gap-sm)}
+.sk-dl{display:grid;grid-template-columns:max-content 1fr;gap:4px 12px;margin:0;font-size:var(--cds-font-size-body)}
+.sk-dl dt{color:var(--color-fg-muted);font-size:var(--cds-font-size-caption);padding-top:2px}
+.sk-dl dd{margin:0;font-variant-numeric:tabular-nums}
+.sk-detail a,.sk-table a{color:inherit;text-decoration:underline;text-underline-offset:2px}
+.sk-wrap{overflow-x:auto}
+.sk-table{border-collapse:collapse;width:100%;font-size:var(--cds-font-size-caption);font-variant-numeric:tabular-nums}
+.sk-table th,.sk-table td{text-align:left;padding:6px 10px 6px 0;border-bottom:1px solid var(--color-border-line);white-space:nowrap;vertical-align:top}
+.sk-table th{color:var(--color-fg-muted);font-weight:var(--cds-font-weight-medium)}
+.sk-table td.sk-num,.sk-table th.sk-num{text-align:right}
+.sk-table td.sk-wraptd{white-space:normal;min-width:180px}
+.sk-details summary{cursor:pointer;font-size:var(--cds-font-size-body)}
+.sk-details ul{margin:var(--cds-gap-sm) 0 0;padding-left:1.2em;font-size:var(--cds-font-size-caption);color:var(--color-fg-muted);line-height:1.7}
+</style>
+</head>
+<body>
+<div class="sk" lang="ja">
+<header>
+<h1 class="sk-title" id="title">評価の高い日本酒の蔵 — 産地・甘辛・米・水</h1>
+<p class="sk-lead" id="lead">SAKETIME総合ランキング上位50銘柄を醸す <b data-draw="fig" data-source="summary" data-field="n" data-row="0">—</b> 蔵を対象にしました。最も多い県は <b data-draw="fig" data-source="summary" data-field="topPref" data-row="0">—</b>(<b data-draw="fig" data-source="summary" data-field="topPrefN" data-row="0">—</b> 蔵)。日本酒度を確認できたのは <b data-draw="fig" data-source="summary" data-field="nSmv" data-row="0">—</b> 蔵で、中央値は <b data-draw="fig" data-source="summary" data-field="medSmv" data-row="0">—</b>、そのうち <b data-draw="fig" data-source="summary" data-field="nSweetSmv" data-row="0">—</b> 蔵がマイナス(甘口側)です。レビューで「甘口寄り」とされる蔵は <b data-draw="fig" data-source="summary" data-field="nSweetTaste" data-row="0">—</b> 蔵ありました。</p>
+</header>
+
+<section class="sk-card" id="map-section">
+<h2 class="sk-h" id="map-h">蔵の地図</h2>
+<p class="sk-p">点が蔵の位置です。色分けを切り替えると、甘辛・米・水の地域差を見られます。点をタップ(クリック)すると下に詳細が出ます。</p>
+<div class="sk-row"><label for="sk-mode">色分け</label>
+<select class="dash-select" id="sk-mode" aria-label="地図の色分け">
+<option value="score">評価点(円の大きさ)</option>
+<option value="taste">味の傾向(レビュー)</option>
+<option value="smv">日本酒度</option>
+<option value="rice">主な米</option>
+<option value="water">仕込み水</option>
+</select></div>
+<div class="sk-chart sk-map" data-draw="map" data-source="kura japan" id="map">—</div>
+<p class="sk-note">点線の輪は、ご指定の記事で取り上げられた大木代吉本店(楽器正宗・自然郷、福島県矢吹町)です。位置は市町村レベルの概略で、沖縄・離島の一部は地図から省いています。</p>
+<div class="sk-detail" data-draw="detail" data-source="kura" id="detail"></div>
+</section>
+
+<section class="sk-card" id="scatter-section">
+<h2 class="sk-h" id="scatter-h">日本酒度 × 酸度</h2>
+<p class="sk-p">横軸の日本酒度はマイナスほど甘口、プラスほど辛口の目安です。縦軸の酸度は高いほど味が濃く引き締まって感じられます。色は代表商品の米です。</p>
+<div class="sk-chart" data-draw="scatter" data-source="kura" id="scatter">—</div>
+<p class="sk-note">両方の数値を確認できた蔵だけを描いています。蔵ごとに代表商品1本の値で、商品や醸造年で変わります。</p>
+</section>
+
+<section class="sk-card" id="rice-section">
+<h2 class="sk-h" id="rice-h">米と日本酒度</h2>
+<p class="sk-p">米の種類ごとに日本酒度を並べました。縦線は各グループの中央値です。「地元品種」は、その県で育成・契約栽培された米(秋田酒こまち、露葉風、揖斐の誉、結の香など)をまとめたものです。</p>
+<div class="sk-chart sk-strip" data-draw="strip" data-source="kura" id="strip">—</div>
+</section>
+
+<section class="sk-card" id="water-section">
+<h2 class="sk-h" id="water-h">仕込み水</h2>
+<p class="sk-p">仕込み水の記載があったのは <b data-draw="fig" data-source="summary" data-field="nWater" data-row="0">—</b> 蔵、うち水質まで分かるのは <b data-draw="fig" data-source="summary" data-field="nWaterClass" data-row="0">—</b> 蔵(軟水 <b data-draw="fig" data-source="summary" data-field="nSoft" data-row="0">—</b> 蔵)でした。数が少ないため、水質と甘辛の関係は傾向としては読めません。</p>
+<div class="sk-wrap"><table class="sk-table" data-source="kura" data-row-key="brand" id="water-table">
+<thead><tr><th data-field="brand">銘柄</th><th data-field="pref">県</th><th data-field="water_class">水質</th><th data-field="water">水源</th><th data-field="smv" class="sk-num">日本酒度</th><th data-field="taste">味の傾向</th></tr></thead>
+<tbody data-draw="wrows"></tbody></table></div>
+</section>
+
+<section class="sk-card" id="table-section">
+<h2 class="sk-h" id="table-h">全蔵の一覧</h2>
+<div class="sk-wrap"><table class="sk-table" data-source="kura" data-row-key="brand" id="all-table">
+<thead><tr><th data-field="rank" class="sk-num">順位</th><th data-field="brand">銘柄</th><th data-field="kura">蔵</th><th data-field="pref">県</th><th data-field="score" class="sk-num">評価</th><th data-field="product">代表商品</th><th data-field="smv" class="sk-num">日本酒度</th><th data-field="acid" class="sk-num">酸度</th><th data-field="rice">米</th><th data-field="taste">味の傾向</th></tr></thead>
+<tbody data-draw="rows"></tbody></table></div>
+</section>
+
+<details class="sk-details" id="notes">
+<summary>データの出どころと注意点</summary>
+<ul>
+<li>対象は、SAKETIME総合ランキング(2026年11月24日閲覧)の上位50銘柄を醸す蔵です。同じ蔵の銘柄はまとめ、順位と評価点は最上位の銘柄のものを使っています。</li>
+<li>日本酒度・酸度・米・仕込み水・味の傾向は、SAKETIMEの各銘柄ページ(銘柄一覧表・説明文・レビュー)の記載です。記載がない蔵は「非公開」「記載なし」としています。新政、産土、Ohmine など、数値を公開しない蔵が上位に多くあります。</li>
+<li>代表商品は、数値が載っていた商品の中から定番に近いものを選びました。辛口を名乗る限定品しか数値がない蔵(御湖鶴、よこやま)は、蔵全体の傾向より辛口側に出ます。</li>
+<li>「味の傾向」は、説明文とレビューの甘辛評価から、甘口寄り・辛口寄り・どちらとも、の3つに分けたものです。</li>
+<li>緯度・経度は所在地の市町村から置いた概略値で、番地レベルの正確さはありません。</li>
+<li>ご指定の記事(Sakenomy「楽器正宗・自然郷 13本を飲み比べ」)は大木代吉本店1蔵の紹介で、日本酒度や酸度、仕込み水の記載はありませんでした。</li>
+</ul>
+</details>
+</div>
+<footer class="sk-foot">
+データ: <a href="data/kura.csv">kura.csv</a> ・ <a href="data/kura.json">kura.json</a> ・ 出典 <a href="https://www.saketime.jp/ranking/">SAKETIME</a> ・ 地図 <a href="https://github.com/dataofjapan/land">dataofjapan/land</a><br>
+Created by RinK ・ <a href="https://github.com/RimgO/japan-ranked-in-sake-map">GitHub</a>
+</footer>
+<script src="js/d3.v7.min.js"></script>
+<script src="data/kura.js"></script>
+<script src="data/japan.js"></script>
+<script src="js/dash-shim.js"></script>
+<script src="js/app.js"></script>
+</body>
+</html>
